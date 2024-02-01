@@ -1,0 +1,54 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #toggle-btn {
+  display: none;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 48px; height: 24px; /**/
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative; /*position: absolute 상위*/
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-label:before {
+  width: 20px; height: 20px;
+  content: "";
+  position: absolute;
+  top: 2px; /*위 왼쪽 여백 크기 --> */
+  left: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}
+
+#toggle-btn:checked + .toggle-label {
+  background-color: #4CAF50;
+}
+
+#toggle-btn:checked + .toggle-label:before {
+  left: calc(100% - 22px); /*원의 width + 여백값*/
+}
+</style>
+
+<body>
+  <input type="checkbox" id="toggle-btn">
+  <label for="toggle-btn" class="toggle-label"></label>
+  <hr>
+
+  <div id="toggle-content">
+    이 부분이 토글되는 내용입니다.
+  </div>
+</body>
+
+<script>
+</script>
+</html>

@@ -2,29 +2,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>토글버튼</title>
 </head>
 <style>
-  #toggle-btn {
+.toggle-wrapper {
+  /* border: 1px solid black; */
+  width: 300px; height: 100px;
+  margin: 30px 0 0 30px;
+}
+#toggle-btn {
   display: none;
 }
-
+/* 바깥 부분 */
 .toggle-label {
   display: inline-block;
-  width: 48px; height: 24px; /**/
+  width: 48px; height: 24px; /*비율은 2:1이 가장 좋아 보인다*/
   background-color: #ccc;
   border-radius: 20px;
   position: relative; /*position: absolute 상위*/
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
+/* 안쪽 움직이는 부분 */
 .toggle-label:before {
   width: 20px; height: 20px;
   content: "";
   position: absolute;
-  top: 2px; /*위 왼쪽 여백 크기 --> */
-  left: 2px;
+  top: 2px; left: 2px; /*위 왼쪽 여백 크기 : 2px가 적당함 */
   background-color: white;
   border-radius: 50%;
   transition: left 0.3s ease;
@@ -35,20 +39,38 @@
 }
 
 #toggle-btn:checked + .toggle-label:before {
-  left: calc(100% - 22px); /*원의 width + 여백값*/
+  left: calc(100% - 22px); /*원의 width + 여백값 */
+}
+
+#toggle-content {
+  padding-left: 10px;
+  display: none;
 }
 </style>
 
 <body>
-  <input type="checkbox" id="toggle-btn">
-  <label for="toggle-btn" class="toggle-label"></label>
-  <hr>
-
-  <div id="toggle-content">
-    이 부분이 토글되는 내용입니다.
+  <div class="toggle-wrapper">
+    <input type="checkbox" id="toggle-btn">
+    <label for="toggle-btn" class="toggle-label"></label>
+    <hr>
+    <div id="toggle-content">
+      서승환 뷰웅신
+    </div>
   </div>
 </body>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let toggleBtn = document.getElementById('toggle-btn');
+    let toggleContent = document.getElementById('toggle-content');
+
+    toggleBtn.addEventListener('change', function () {
+      if (toggleBtn.checked) {
+        toggleContent.style.display = 'block'; // 체크됐을 때 숨김
+      } else {
+        toggleContent.style.display = 'none'; // 체크됐을 때 숨김
+      }
+    });
+  });
 </script>
 </html>

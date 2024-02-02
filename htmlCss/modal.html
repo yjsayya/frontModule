@@ -1,0 +1,59 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal</title>
+</head>
+<style>
+  #modal-open-btn {
+    cursor: pointer;
+  }
+
+  #modal-wrapper {
+    /* border: 1px solid black; */
+    width: 100%; height: 100%;
+    position: fixed;
+    top: 0; left: 0;
+
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  #modal-wrapper.hidden {
+    display: none;
+  }
+
+  #modal-content {
+    background-color: #ffffff;
+    width: 300px; height: 150px;
+    border-radius: 5px;;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+  }
+</style>
+<body>
+  <button id="modal-open-btn" type="button">서승환은?</button>
+
+  <div id="modal-wrapper" class="hidden">
+    <div id="modal-content">
+      <p>ㅂㅅ</p>
+      <button id="modal-close-btn">ㅇㅋ</button>
+    </div>
+  </div>
+</body>
+<script>
+  // 모달창 열기
+  document.getElementById('modal-open-btn').addEventListener('click', function() {
+    document.getElementById('modal-wrapper').classList.remove('hidden');
+  })
+  // 모달창 닫기
+  document.getElementById('modal-close-btn').addEventListener('click', function() {
+    document.getElementById('modal-wrapper').classList.add('hidden');
+  })
+</script>
+</html>

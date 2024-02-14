@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>newWindow</title>
+</head>
+<body>
+  <p><button onclick="javascript:open1()">현재창에서 열기</button></p>
+  <p><button onclick="javascript:open2()">새창으로 열기</button></p>
+  <p><button onclick="javascript:open3()">사이즈 지정해서 열기</button></p>
+  <p><button onclick="javascript:open4()">메뉴창, 단축도구창 표시안함 열기</button></p>
+  <p><button onclick="javascript:open5()">전체화면으로 열기</button></p>
+</body>
+<script>
+  // window.open() 함수에 대한 간단한 설명
+
+  // window.open(url, name, option);
+  // window.open('팝업주소', '팝업창이름', '팝업창옵션');
+
+  // 이 사이트 참고 하자 
+  // https://ssd0908.tistory.com/entry/JavaScript-windowopen-%EC%83%88%EC%B0%BD%EC%9C%BC%EB%A1%9C-%EC%97%B4%EA%B8%B0-%EC%82%AC%EC%9A%A9%EB%B2%95
+
+function openNewWindow() {
+  window.open('http://www.naver.com','newWindow','width=700, height=500, top=100, left=200');
+}
+
+
+  // 현재창에서 열기
+function open1(){
+  window.open("http://www.naver.com", "_self");
+}
+// 새창으로 열기
+function open2(){
+  window.open("http://www.naver.com", "_blank");
+}
+
+// 사이즈 지정해서 열기
+function open3(){
+  window.open("http://www.naver.com", "_blank", "width=500, height=500");
+}
+
+// 메뉴창, 단촉도구창 표시안함
+function open4(){
+  window.open("http://www.naver.com", "_blank", "menubar=no, toolbar=no");
+}
+
+// 전체화면으로 열기
+function open5(){
+  window.open("http://www.naver.com",  "_blank", "fullscreen=yes");
+}
+</script>
+</html>

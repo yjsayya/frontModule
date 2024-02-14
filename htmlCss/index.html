@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+</head>
+<body>
+  <p><button onclick="javascript:toBig()">크게</button></p>
+  <p><button onclick="javascript:toSmall()">작게</button></p>
+  <p><button onclick="javascript:closeWindow()">닫기</button></p>
+</body>
+<script>
+  function toBig(){
+	window.resizeBy(100,100);
+}
+function toSmall(){
+	window.resizeTo(1024,768);
+}
+
+function closeWindow() {
+  window.close();
+}
+</script>
+</html>

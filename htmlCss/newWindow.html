@@ -24,29 +24,37 @@ function openNewWindow() {
   window.open('http://www.naver.com','newWindow','width=700, height=500, top=100, left=200');
 }
 
-
   // 현재창에서 열기
 function open1(){
-  window.open("http://www.naver.com", "_self");
+  window.open("./index.html", "_self");
 }
 // 새창으로 열기
 function open2(){
-  window.open("http://www.naver.com", "_blank");
+  window.open("./index.html", "_blank");
 }
 
 // 사이즈 지정해서 열기
 function open3(){
-  window.open("http://www.naver.com", "_blank", "width=500, height=500");
+  window.open("./index.html", "_blank", "width=500, height=500");
 }
 
 // 메뉴창, 단촉도구창 표시안함
 function open4(){
-  window.open("http://www.naver.com", "_blank", "menubar=no, toolbar=no");
+  window.open("./index.html", "_blank", "menubar=no, toolbar=no");
 }
 
 // 전체화면으로 열기
 function open5(){
-  window.open("http://www.naver.com",  "_blank", "fullscreen=yes");
+  window.open("./index.html",  "_blank", "fullscreen=yes");
 }
+
+// 이렇게 현재 창의 사이즈를 조절할 수 있음!
+function toBig(){
+	window.resizeBy(100,100);
+}
+function toSmall(){
+	window.resizeTo(1024,768);
+}
+
 </script>
 </html>

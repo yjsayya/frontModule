@@ -50,12 +50,10 @@
 
 <body>
   <div class="toggle-wrapper">
-    <input type="checkbox" id="toggle-btn">
-    <label for="toggle-btn" class="toggle-label"></label>
-    <hr>
-    <div id="toggle-content">
-      서승환 ㅂㅅ
-    </div>
+    <input type="checkbox" id="toggle-btn"/>
+        <label for="toggle-btn" class="toggle-label"></label>
+        <hr />
+        <div id="toggle-content">서승환 ㅂㅅ</div>
   </div>
 </body>
 
@@ -65,11 +63,13 @@
     let toggleContent = document.getElementById('toggle-content');
 
     toggleBtn.addEventListener('change', function () {
+      // check : 숨김
       if (toggleBtn.checked) {
-        toggleContent.style.display = 'block'; // 체크됐을 때 숨김
-      } else {
-        toggleContent.style.display = 'none'; // 체크됐을 때 숨김
-      }
+        toggleContent.style.display = 'block';
+        return;
+      } 
+      // uncheck : 숨김
+      toggleContent.style.display = 'none';
     });
   });
 </script>

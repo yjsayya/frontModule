@@ -60,7 +60,12 @@
     const emptyTodo = document.createElement('tr');
     emptyTodo.innerHTML = '<td align="center" colspan="5">할 일이 없습니다</td>';
 
-    document.getElementById('todo-table-content').appendChild(emptyTodo);
+    const todoTableContent = document.getElementById('todo-table-content');
+    // 앞에 이미 있으면 제거
+    while (todoTableContent.firstChild) {
+        todoTableContent.firstChild.remove();
+    }
+    todoTableContent.appendChild(emptyTodo);
   }
 
   // 버튼 누르면 나오기

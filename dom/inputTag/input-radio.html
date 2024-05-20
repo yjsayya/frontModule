@@ -1,0 +1,61 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .wrapper {
+    border: 1px solid black;
+    width: 100px; height: 100px;
+
+    display: flex;
+    flex-flow: nowrap column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+</style>
+<body>
+  <div class="wrapper">
+    <div>
+      <input type="radio" name="todayLunch" id="todayLunch1" value="짬뽕" checked>
+      <label for="todayLunch1">짬뽕</label>
+    </div>
+    <div>
+      <input type="radio" name="todayLunch" id="todayLunch2" value="자장명">
+      <label for="todayLunch2">자장면</label>
+      <div style="display: none;" id="hideDiv">
+        hi ~~
+      </div>
+    </div>
+    <div>
+      <input type="radio" name="todayLunch" id="todayLunch3" value="탕수육">
+      <label for="todayLunch3">탕수육</label>
+    </div>
+    <div>
+      <input type="radio" name="todayLunch" id="todayLunch4" value="깐풍기">
+      <label for="todayLunch4">깐풍기</label>
+    </div>
+  </div>
+</body>
+<script>
+
+  var ready = {
+    init: function() {
+      // api로 통신할 데이터를 셋팅할 때 ; value 가져오기
+      let inputValue = document.querySelector('input[name=todayLunch]:checked').value;
+      // 특정 radio input이 선택되었을 때; 이벤트 발생
+      document.getElementById('todayLunch2').addEventListener('change', function() {
+        if (document.getElementById('todayLunch2').checked)
+          document.getElementById('hideDiv').style.display = 'block';
+        else
+          document.getElementById('hideDiv').style.display = 'none';
+
+      });
+    }
+  }
+  
+  ready.init();
+
+</script>
+</html>

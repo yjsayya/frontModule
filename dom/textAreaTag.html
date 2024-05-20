@@ -1,0 +1,91 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>textArea</title>
+</head>
+<style>
+  #message {
+    width: 200px; height: 150px;
+  }
+</style>
+<body>
+  <div>
+    <textarea name="message" id="message" name="message" placeholder="내용을 입력해주세요"></textarea>
+    <p></p>
+    <div>
+      <button id="initMessageBtn">다시 입력</button>
+      <span id="byteLength">0</span>/<span id="contentLimit">90</span>Bytes
+      <span id="msgType">SMS</span>
+    </div>
+  </div>
+</body>
+<script>
+  var send = {
+    init: function() {
+      /** 버튼 초기화 */
+      document.getElementById('initMessageBtn').addEventListener('click', function() {
+        document.getElementById('message').value = '';
+        document.getElementById('byteLength').innerText = '0';
+      });
+
+      /** 메세지에 내용이 변할때마다 byte 확인 */
+      document.getElementById('message').addEventListener('change', function() {
+        let message = document.getElementById('message').value;
+        send.chkMsgType(message);
+      });
+    }, // init()
+
+    /** bytes 핸들러 */
+    bytesHandler(htmlId, flag) {
+      let maxBytes = (() => {
+        switch(flag) {
+          case 'subject':
+            return 50;
+          case 'msg':
+            return 2000;
+          case 'campName':
+            return 20;
+          default:
+            return 0;
+        }
+      });
+
+      let textContent = document.getElementById(htmlId).value;
+      let textContentByte = this.calculateByteLength(textContent);
+
+
+    },
+
+    /** 메시지 내용's byte수 검사 */
+    chkMsgType(message) {
+      let messageByte = this.calculateByteLength(message);
+      document.getElementById('byteLength').innerText = messageByte;
+
+      if (messageByte <= 90) {
+        document.getElementById('msgType').innerText = 'SMS'
+        document.getElementById('contentLimit').innerText = '90' 
+      } else if (90 < messageByte && messageByte <= 2000) { 
+        document.getElementById('msgType').innerText = 'LMS'
+        document.getElementById('contentLimit').innerText = '2000'
+      } else if (messageByte > 2000) {
+        // 짤라 버리기
+      }
+    },
+
+    /** 메시지 내용's byte수 검사 */
+    calculateByteLength(str) {
+      // EUC-KR (한글 2byte)
+      let byte = 0;
+      for (let i = 0; i < str.length; i++) {
+        (str.charCodeAt(i) > 127) ? byte += 2 : byte++;
+      }
+      return byte;
+    },
+    /** 메시지 내용이 2000자 넘어갈 경우 자동으로 잘라버리기 */
+
+
+  } // send
+  send.init();
+</script>
+</html>

@@ -1,0 +1,65 @@
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.checkBoxWrapper {
+		width: 200px; height: 100px;
+		display: flex;
+		flex-flow: nowrap column;
+	}
+</style>
+<body>
+	<div class="checkBoxWrapper">
+		<div>
+			<input type="checkbox" id="checkbox1" name="lunchCheckBox" />
+			<label for="checkbox1">짜장면</label>
+		</div>
+		<div>
+			<input type="checkbox" id="checkbox2" name="lunchCheckBox" />
+			<label for="checkbox2">짬뽕</label>
+		</div>
+		<div>
+			<input type="checkbox" id="checkbox3" name="lunchCheckBox" />
+			<label for="checkbox3">탕수육</label>
+		</div>
+		<div>
+			<input type="checkbox" id="checkbox4" name="lunchCheckBox" />
+			<label for="checkbox4">깐풍기</label>
+		</div>
+	</div>
+	<button id="checkedAllBtn">전체선택</button>
+</body>
+<script>
+	var wow = {
+		init: function() {
+			/** 체크 박스 전체 선택 */
+			document.getElementById('checkedAllBtn').addEventListener('click', function(event) {
+				let target = event.target;
+				if (target.id === 'checkedAllBtn') {
+					document.querySelectorAll('input[name="lunchCheckBox"]:not(:checked)')
+							.forEach(function(checkBox) {
+									checkBox.checked = true;
+							}) 
+							document.getElementById('checkedAllBtn').innerText = '전체해제';
+					document.getElementById('checkedAllBtn').id = 'uncheckedAllBtn';
+				} // 체크박스 전체 해제
+				else {
+					document.querySelectorAll('input[name="lunchCheckBox"]:checked')
+					.forEach(function(checkBox) {
+						checkBox.checked = false;
+					}) 
+					document.getElementById('uncheckedAllBtn').innerText = '전체선택';
+					document.getElementById('uncheckedAllBtn').id = 'checkedAllBtn';
+				}
+			});
+
+
+		} // init()
+	} // wow 객체
+	wow.init();
+</script>
+</html>

@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input-text</title>
+</head>
+<body>
+  <p><label for="inputText">inputText : </label><input type="text" id="inputText" name="inputText" /></p>
+  <label for="textareaText">textArea : </label><textarea name="textareaText" id="textareaText"></textarea>
+  <button id="btn">확인</button>
+</body>
+<script>
+  var inputText = {
+    init: function() {
+      // 1. input창 활성화하기
+      document.getElementById('inputText').focus();
+
+      // 2. input의 value(내용) 가져오기
+      document.getElementById('btn').addEventListener('click', () => {
+        console.log(document.getElementById('inputText').value);
+        console.log(document.getElementById('textareaText').value);
+      }) 
+    }
+  }
+  inputText.init();
+</script>
+</html>

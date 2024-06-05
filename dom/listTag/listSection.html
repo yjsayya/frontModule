@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .file-upload-way {
+    width: 300px; height: 45px;
+    padding: 0;
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .file-upload-way > li {
+    width: 50%; height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .upload-way-selected {
+    border-bottom: 2px solid #0b58b3;
+  }
+
+  .upload-way-unselected {
+    border-bottom: 1px solid #d6d9e1;
+  }
+
+</style>
+<body>
+  <ul class="file-upload-way">
+    <li id="fileUploadSection" class="file-upload-section upload-way-selected">엑셀 불러오기</li>
+    <li id="ctrlcvUploadSection" class="ctrlcv-upload-section upload-way-unselected">엑셀 붙여넣기</li>
+  </ul>
+  <div id="fileUploadSectionContent" class="file-upload-section-content" >
+    엑셀 불러오기 섹션
+  </div>
+  <div id="ctrlcvUploadSectionCnotent" class="ctrlcv-upload-section-content" style="display: none;">
+    엑셀 붙여넣기 섹션
+  </div>
+</body>
+<script>
+  /** 발송대상자 업로드 > 엑셀 불러오기 */
+  document.getElementById('ctrlcvUploadSection')
+    .addEventListener('click', () => {
+      document.getElementById('fileUploadSection').classList.remove('upload-way-selected');
+      document.getElementById('fileUploadSection').classList.add('upload-way-unselected');
+      document.getElementById('fileUploadSectionContent').style.display = 'none';
+
+      document.getElementById('ctrlcvUploadSection').classList.add('upload-way-selected');
+      document.getElementById('ctrlcvUploadSection').classList.remove('upload-way-unselected');
+      document.getElementById('ctrlcvUploadSectionCnotent').style.display = 'block';
+    }
+  );
+  /** 발송대상자 업로드 > 엑셀 붙여넣기 */
+  document.getElementById('fileUploadSection')
+    .addEventListener('click', () => {
+      document.getElementById('ctrlcvUploadSection').classList.remove('upload-way-selected');
+      document.getElementById('ctrlcvUploadSection').classList.add('upload-way-unselected');
+      document.getElementById('ctrlcvUploadSectionCnotent').style.display = 'none';
+
+      document.getElementById('fileUploadSection').classList.add('upload-way-selected');
+      document.getElementById('fileUploadSection').classList.remove('upload-way-unselected');
+      document.getElementById('fileUploadSectionContent').style.display = 'block';
+    }
+  );
+
+</script>
+</html>

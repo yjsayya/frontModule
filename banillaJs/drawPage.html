@@ -1,0 +1,75 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .wrapper {
+    margin-top: 30px;
+  }
+
+
+  .table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: auto;
+  }
+
+  th, td {
+      padding: 8px;
+      text-align: left;
+      /* border: 1px solid black; */
+      text-align: center;
+  }
+
+  th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+      background-color: #f9f9f9;
+  }
+
+  tr {
+      background-color: #e6e6e6;
+  }
+</style>
+<body>
+  <button id="btn">html 내부 채우기</button>
+  <div class="wrapper">
+    <table class="table">
+      <thead class="table-head">
+        <tr>
+          <td width="10%">No</td>
+          <td width="20%">등록시간</td>
+          <td width="50%">할일</td>
+          <td width="20%">비고</td>
+        </tr>
+      </thead>
+      <tbody id="todo-table-content">
+
+      </tbody>
+    </table>
+  </div>
+</body>
+
+<script>
+  function drawPage() {
+    const emptyTodo = document.createElement('tr');
+    emptyTodo.innerHTML = '<td align="center" colspan="5">할 일이 없습니다</td>';
+
+    const todoTableContent = document.getElementById('todo-table-content');
+    // 앞에 이미 있으면 제거
+    while (todoTableContent.firstChild) {
+        todoTableContent.firstChild.remove();
+    }
+    todoTableContent.appendChild(emptyTodo);
+  }
+
+  // 버튼 누르면 나오기
+  document.getElementById('btn').addEventListener('click', drawPage);
+
+</script>
+</html>

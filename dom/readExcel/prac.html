@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>파일 읽기 예시</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <div id="fileContent">
+    <!-- 여기에 내용이 들어감-->
+  </div>
+</body>
+<script>
+  document.getElementById('fileInput').addEventListener('change', function () {
+    let file = this.files[0];
+    let reader = new FileReader();
+    reader.onload = function (event) {
+      document.getElementById('fileContent').innerText = event.target.result;
+    };
+    reader.readAsText(file);
+  });
+</script>
+</html>

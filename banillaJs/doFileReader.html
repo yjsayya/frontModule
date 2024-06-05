@@ -1,0 +1,47 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- XLSX 라이브러리-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+</head>
+<body>
+  <input type="file" accept=".xlsx, .xls" onchange="doFileReader(this)">
+</body>
+<script>
+  function doFileReader(fileList) {
+      let file = fileList.files[0]; // 파일 접근
+      /** file 객체 */
+      let name = file.name; // 파일 이름 접근
+      let size = file.size; // 파일 크기
+      let type = file.type; // 파일 타입
+      let extension = file.name.split('.')[1]; // 확장자
+      // 파일 수정일자
+      let lastModifiedDate = new Date(file.lastModified);
+      let formattedLastModifiedDate = `${lastModifiedDate.getFullYear()}-${(lastModifiedDate.getMonth() + 1).toString().padStart(2, '0')}-${lastModifiedDate.getDate().toString().padStart(2, '0')} ${lastModifiedDate.getHours().toString().padStart(2, '0')}:${lastModifiedDate.getMinutes().toString().padStart(2, '0')}:${lastModifiedDate.getSeconds().toString().padStart(2, '0')}`;
+      console.log(name);
+      console.log(size);
+      console.log(type);
+      console.log(extension);
+      console.log(formattedLastModifiedDate);
+
+      /** 2. FileReader 객체 */
+      let fileReader = new FileReader();
+      fileReader.onload = function () {
+          let data = fileReader.result;
+          let workBook = XLSX.read(data, { type: 'binary' });
+          workBook.SheetNames.forEach(function (sheetName) {
+              console.log('SheetName: ' + sheetName);
+              let rows = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName]);
+              console.log(JSON.stringify(rows));
+          })
+      };
+      fileReader.readAsBinaryString(input.files[0]);
+
+
+  }
+</script>
+</html>

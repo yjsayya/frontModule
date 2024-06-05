@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파일 업로드</title>
+</head>
+<style>
+  .file-group {
+      width: 543px; height: 48px;
+      position: relative
+  }
+
+  .file-group > input {
+      border: 1px solid #d6d9e1;
+      border-radius: 3px;
+      width: 400px; height: 44px;
+      padding-left: 139px;
+      color: #222;
+      font-size: 16px;
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal !important;
+      display: block
+  }
+
+  .file-group .attach-box {
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      width: 96%
+  }
+
+  .file-group .btn-fileselect {
+      display: inline-block;
+      width: 120px;
+      height: 33px;
+      background: #979dab;
+      color: #fff;
+      border-radius: 5px;
+      line-height: 33px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer
+  }
+
+  .file-group .attach-box input {
+      opacity: 0;
+      filter: alpha(opacity=0);
+      -ms-filter: alpha(opacity=0);
+      cursor: pointer;
+      position: absolute;
+      top: -6px;
+      left: 0;
+      width: 100%;
+      height: 46px
+  }
+
+  .btn-delete {
+      display: inline-block;
+      border: none;
+      width: 40px; height: 40px;
+      background: url(./icon-delete-16.svg) no-repeat center center;
+      text-indent: -9999999px;
+      white-space: nowrap;
+      overflow: hidden;
+
+      position: absolute;
+      top: 3px; right: 0
+  }
+</style>
+<body>
+  <div class="file-group">
+    <input id="attachUpload" class="attchFile" name="attachUpload"
+           placeholder="선택한 파일 없음" readonly title="파일 첨부" type="text">
+    <div class="attach-box">
+      <span class="btn-fileselect">엑셀 파일 첨부</span>
+      <input name="img_selector" id="targetFile" accept=".csv, .xlsx, .xls"
+             onchange="uploadFileChangedHandler(this)" type="file">
+    </div>
+    <button id="btnDeleteTargetFile" class="btn-delete" type="button" style="display: none">삭제</button>
+  </div>
+  <table>
+
+  </table>
+</body>
+<script>
+    let uploadFile = null;
+
+    function uploadFileChangedHandler(fileList) {
+        let file = fileList.files[0];
+        let extension = file.name.split('.')[1];
+
+        // 파일 용량 체크
+        if (file.size > 30_000_000){
+            alert('파일의 최대 용량은 30MB(30000KB) 입니다.\n확인 후 다시 첨부하세요.');
+            return;
+        }
+        // 파일 확장자 체크
+        if (extension !== 'xlsx' && extension !== 'csv' && extension !== 'xls') {
+            alert("지원하지 않는 파일 형식입니다.\n지원 파일 형식 : .csv, .xlsx, .xls");
+            return;
+        }
+        // 파일 이름 띄우기
+        document.getElementById('attachUpload').value = file.name;
+
+        // 파일 읽기
+        let start = new Date();
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target.readyState === FileReader.DONE) {
+              let data = e.target.result;
+              data = new Uint8Array(data);
+              let workbookJson = XLSX.read(data, {type: 'array' ,cellDates: true, dateNF: 'YYYY-MM-DD'});
+              let targetJson = XLSX.utils.sheet_to_json(workbookJson.Sheets[workbookJson.SheetNames[0]], {raw: false});
+              // 원본 보여주기?
+
+
+          }
+        }
+
+        // 초기화 버튼 보이게 하기
+        document.getElementById('btnDeleteTargetFile').style.display = 'block';
+    }
+</script>
+</html>

@@ -1,0 +1,69 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>send</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./common.css">
+  <link rel="stylesheet" href="./sendPage.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- [Section 1] 발송 내용-->
+    <div class="message-wrapper">
+
+    </div>
+    <!-- [Section 2] 발송 대상자-->
+    <div class="recipients-wrapper flex_col_start_cen">
+      <div class="recipients-sendWay flex_row_spcBtwn_cen">
+        <button id="recipAddrBtn">주소록 불러오기</button>
+        <button id="recipUploadBtn">발송대상자 업로드</button>
+      </div>     
+      <div class="recipients-manaul-reg flex_row_cen_cen">
+        <input id="manualRegNameInput" class="recipients-manual-reg-name" type="text" placeholder=" 이름" autocomplete="off" />
+        <input id="manualRegEmailInput" class="recipients-manual-reg-email" type="text" placeholder=" 이메일 주소 입력" autocomplete="off" />
+        <button id="manualRegBtn" class="recipients-manual-reg-btn" type="button">건별 등록</button>
+      </div>
+      <div class="recipients-list flex_col_start_cen">
+        <div class="recipients-list-header flex_row_spcBtwn_cen">
+          <div class="recipients-list-header flex_row_start_cen">
+            <input id="recipAllChkBx" type="checkbox" />
+            <label for="recipAllChkBx">수신 대상자</label>
+          </div>
+          <button id="recipDelAllBtn" class="recipients-deleteAll-btn">전체 삭제</button>
+        </div>
+        <div id="recipList" class="recipients-list-body">
+          <!-- 발송 대상자들 -->
+        </div>
+      </div>
+      <div class="final-sendInfo flex_col_start_cen">
+        <div class="final-recipients-cnt flex_row_spcBtwn_cen">
+          <div>발송 대상자</div>
+          <div><span>0</span><span>명</span></div>
+        </div>
+        <div class="final-expected-cost flex_row_spcBtwn_cen">
+          <div>예상 비용</div>
+          <div><span>0</span><span>원</span></div>
+        </div>
+        <div class="final-current-balance flex_row_spcBtwn_cen">
+          <div>보유 잔액</div>
+          <div><span>0</span><span>원</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- [Section 3] 발송 정보-->
+    <div class="sendInfo-wrapper">
+      
+    </div>
+  </div>
+
+
+  <!-- 주소록 불러오기 팝업창 -->
+  <div class="popup-" style="display: none;">
+    <h4>주소록 불러오기</h4>
+  </div>
+</body>
+<script src="./sendPage.js"></script>
+</html>

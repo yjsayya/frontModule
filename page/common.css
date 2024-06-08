@@ -1,0 +1,35 @@
+button {
+  -webkit-appearance: none; /* 웹킷 브라우저에서 기본 스타일 숨김 */
+  -moz-appearance: none; /* 파이어폭스에서 기본 스타일 숨김 */
+  appearance: none; /* 다른 브라우저에서 기본 스타일 숨김 */
+}
+
+
+/* Layout */
+.flex_row_cen_cen {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex_row_start_cen {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: flex-start;
+  align-items: center; 
+}
+
+.flex_row_spcBtwn_cen {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.flex_col_start_cen {
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: flex-start;
+  align-items: center; 
+}

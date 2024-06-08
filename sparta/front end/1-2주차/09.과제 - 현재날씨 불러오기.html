@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&display=swap" rel="stylesheet">
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+</head>
+
+<style>
+    * {font-family: 'Dongle', sans-serif;}
+    .mytitle {
+        background-color: green;
+        width: 100%;
+        height: 320px;
+        text-align: center;
+        padding-top: 80px;
+        color: white;
+
+        background-image: url('https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+    .한줄 {
+        font-size: xxx-large;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+            data: {},
+            success: function (response) {
+                let weather = response['temp'];
+                $('#wea').text(weather);
+
+                }
+            })
+        })
+</script>
+
+
+<body>
+    <div class="mytitle">
+        <h1> 여기다가 날씨를 조회해보도록 하자</h1>
+        <p class="한줄"> 현재 기온 : <span id="wea"> 00.0 </span>도 </p>
+
+    </div>
+
+
+</body>
+
+</html>

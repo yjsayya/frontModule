@@ -1,0 +1,264 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+</head>
+<style>
+  .wrapper {
+    border: 1px solid black;
+    width: 300px; height: 300px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .item {
+    border: 1px solid black;
+    width: 50px; height: 50px;
+  }
+</style>
+<body>
+  <div class="wrapper">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <table width="100%" border="1" cellspacing="0">
+    <!-- 테이블 상단 컬럼 시작 -->
+    <tr>
+        <td align="center" colspan="2" width="70%"><font size="2"><b>구분</b></font></td>
+        <td align="center" width="30%"><font size="2"><b>결과</b></font></td>
+    </tr>
+    <!-- 테이블 내용 시작 -->
+    <!-- 1. 회원 정보 -->
+    <tr>
+        <td align="center" rowspan="6" width="30%">회원 정보</td>
+        <td align="center" width="40%">아이디</td>
+        <td align="center" ><div id="user_id"></div></td>
+    </tr>
+    <tr>
+        <td align="center">회사명</td>
+        <td align="center" ><div id="company_name"></div></td>
+    </tr>
+    <tr>
+        <td align="center">이름</td>
+        <td align="center" ><div id="user_nm"></div></td>
+    </tr>
+    <tr>
+        <td align="center">이메일</td>
+        <td align="center" ><div id="user_email"></div></td>
+    </tr>
+    <tr>
+        <td align="center">전화번호</td>
+        <td align="center" ><div id="phone_number"></div></td>
+    </tr>
+    <tr>
+        <td align="center">지불방법</td>
+        <td align="center" ><div id="pay_way"></div></td>
+    </tr>
+    <!-- 2. 서비스 사용 -->
+    <tr>
+        <td align="center" rowspan="2" width="30%">서비스 사용</td>
+        <td align="center" width="40%">로그인 횟수</td>
+        <td align="center" ><div id="left_loginCnt"></div></td>
+    </tr>
+    <tr>
+        <td align="center" width="40%">예상 사용금액</td>
+        <td align="center" ><div id="left_payment"></div></td>
+    </tr>
+    <!-- 3. 발송량 -->
+    <tr>
+        <td align="center" rowspan="12" width="30%">발송량</td>
+        <td align="center" rowspan="2" width="20%">메일</td>
+        <td align="center" width="20%"><div>메일 발송량</div></td>
+        <td align="center" ><div id="left_mail_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>메일 성공률</div></td>
+        <td align="center" ><div id="left_mail_success"></div></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="2" width="20%">SMS</td>
+        <td align="center" width="20%"><div>SMS 발송량</div></td>
+        <td align="center" ><div id="left_sms_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>SMS 성공률</div></td>
+        <td align="center" ><div id="left_sms_success"></div></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="2" width="20%">LMS</td>
+        <td align="center" width="20%"><div>LMS 발송량</div></td>
+        <td align="center" ><div id="left_lms_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>LMS 성공률</div></td>1
+        <td align="center" ><div id="left_lms_success"></div></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="2" width="20%">MMS</td>
+        <td align="center" width="20%"><div>MMS 발송량</div></td>
+        <td align="center" ><div id="left_mms_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>MMS 성공률</div></td>
+        <td align="center" ><div id="left_mms_success"></div></td>
+    </tr>
+
+    <tr>
+        <td align="center" rowspan="2" width="20%">알림톡</td>
+        <td align="center" width="20%"><div>알림톡 발송량</div></td>
+        <td align="center" ><div id="left_a_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>알림톡 성공률</div></td>
+        <td align="center" ><div id="left_a_success"></div></td>
+    </tr>
+
+    <tr>
+        <td align="center" rowspan="2" width="20%">친구톡</td>
+        <td align="center" width="20%"><div>친구톡 발송량</div></td>
+        <td align="center" ><div id="left_c_sends"></div></td>
+    </tr>
+    <tr>
+        <td align="center" ><div>친구톡 성공률</div></td>
+        <td align="center" ><div id="left_c_success"></div></td>
+    </tr>
+    <!-- 4. voc-->
+    <tr>
+        <td align="center" rowspan="2" width="30%">고객 상담</td>
+        <td align="center" width="40%">voc 처리/접수</td>
+        <td align="center" ><div id="voc_cnt"></div></td>
+    </tr>
+    <tr>
+        <td align="center" width="40%">voc 미처리율</td>
+        <td align="center" ><div id="voc_undone"></div></td>
+    </tr>
+</table>
+
+ <br>
+ 
+ <table width="100%" border="1" cellspacing="0">
+    <!-- 테이블 상단 컬럼 시작 -->
+    <tr>
+      <td align="center" colspan="3" width="70%"><font size="2"><b>구분</b></font></td>
+      <td align="center" width="30%"><font size="2"><b>결과</b></font></td>
+    </tr>
+    <!-- 1. 회원 정보 -->
+    <tr>
+      <td align="center" rowspan="6" width="30%">회원 정보</td>
+      <td align="center" colspan="2" width="40%">아이디</td>
+      <td align="center"><div id="user_id"></div></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">회사명</td>
+        <td align="center"><div id="company_name"></div></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">이름</td>
+        <td align="center"><div id="user_nm"></div></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">이메일</td>
+        <td align="center"><div id="user_email"></div></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">전화번호</td>
+        <td align="center"><div id="phone_number"></div></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">지불방법</td>
+        <td align="center"><div id="pay_way"></div></td>
+    </tr>
+  <!-- 2. 서비스 사용 -->
+  <tr>
+    <td align="center" rowspan="2" width="30%">서비스 사용</td>
+    <td align="center" colspan="2" width="40%">로그인 횟수</td>
+    <td align="center" ><div id="left_loginCnt"></div></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2" width="40%">예상 사용금액</td>
+    <td align="center" ><div id="left_payment"></div></td>
+  </tr>
+   <!-- 3. 발송량 -->
+   <tr>
+    <td align="center" rowspan="12" width="30%">발송량</td>
+    <td align="center" rowspan="2" width="20%">메일</td>
+    <td align="center" width="20%"><div>메일 발송량</div></td>
+    <td align="center" ><div id="left_mail_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>메일 성공률</div></td>
+      <td align="center" ><div id="left_mail_success"></div></td>
+  </tr>
+  <tr>
+      <td align="center" rowspan="2" width="20%">SMS</td>
+      <td align="center" width="20%"><div>SMS 발송량</div></td>
+      <td align="center" ><div id="left_sms_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>SMS 성공률</div></td>
+      <td align="center" ><div id="left_sms_success"></div></td>
+  </tr>
+  <tr>
+      <td align="center" rowspan="2" width="20%">LMS</td>
+      <td align="center" width="20%"><div>LMS 발송량</div></td>
+      <td align="center" ><div id="left_lms_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>LMS 성공률</div></td>1
+      <td align="center" ><div id="left_lms_success"></div></td>
+  </tr>
+  <tr>
+      <td align="center" rowspan="2" width="20%">MMS</td>
+      <td align="center" width="20%"><div>MMS 발송량</div></td>
+      <td align="center" ><div id="left_mms_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>MMS 성공률</div></td>
+      <td align="center" ><div id="left_mms_success"></div></td>
+  </tr>
+
+  <tr>
+      <td align="center" rowspan="2" width="20%">알림톡</td>
+      <td align="center" width="20%"><div>알림톡 발송량</div></td>
+      <td align="center" ><div id="left_a_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>알림톡 성공률</div></td>
+      <td align="center" ><div id="left_a_success"></div></td>
+  </tr>
+
+  <tr>
+      <td align="center" rowspan="2" width="20%">친구톡</td>
+      <td align="center" width="20%"><div>친구톡 발송량</div></td>
+      <td align="center" ><div id="left_c_sends"></div></td>
+  </tr>
+  <tr>
+      <td align="center" ><div>친구톡 성공률</div></td>
+      <td align="center" ><div id="left_c_success"></div></td>
+  </tr>
+  <!-- 4. voc-->
+  <tr>
+    <td align="center" rowspan="2" width="30%">고객 상담</td>
+    <td align="center" colspan="2"  width="40%">voc 처리/접수</td>
+    <td align="center"><div id="voc_cnt"></div></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2" width="40%">voc 미처리율</td>
+    <td align="center"><div id="voc_undone"></div></td>
+  </tr>
+</table>
+
+</body>
+</html>

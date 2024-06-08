@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    font-size: 13px;
+  }
+
+  .user-info-fieldset {
+    font-size: 13px;
+  }
+
+  .fieldset-wrapper {
+    display: flex;
+    flex-flow: nowrap column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .pageSize-box {
+    width: 250px;
+    margin-bottom: 10px;
+  }
+
+  .userType-box {
+    width: 136px;
+    margin-bottom: 10px; 
+  }
+
+  .search-box {
+    width: 255px;
+
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .search-box > select {
+    margin-right: 2px;
+  }
+
+  .search-box > input {
+    margin-right: 5px;
+  }
+
+
+  select {
+    font-size: 13px;
+  }
+
+  .userinfo-summary {
+    width: 100%; height: 30px;
+
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 1rem auto;
+    border: 1px solid #ddd;
+    background-color: white;
+  }
+
+/* 테이블 행 */
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #1b1b1b;
+  color: #ddd;
+}
+
+/* 테이블 올렸을 때 */
+tbody tr:hover {
+  background-color: #d3d3d3;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+</style>
+<body>
+  <fieldset class="user-info-fieldset">
+    <legend>회원 정보 검색</legend>
+    <div class="fieldset-wrapper">
+      <!-- 1. 한 페이지에 보여줄 회원 정보 수 -->
+      <div class="pageSize-box">
+        <span>한 페이지에 보여줄 회원 정보 수 : </span>
+        <select name="pageSize" id="pageSize">
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <!-- 2. 회원 유형 -->
+      <div class="userType-box">
+        <span>회원 유형 : </span>
+        <select name="userType" id="userType">
+          <option value="all">전체</option> 
+          <option value="user">일반회원</option> 
+          <option value="admin">관리자</option> 
+          <option value="spammer">스패머</option> 
+        </select>
+      </div>
+      <!-- 3. 검색 -->
+      <div class="search-box">
+        <select id="searchKeyword" name="searchKeyword">
+          <option value="userId">아이디</option>
+          <option value="userEmail">이메일</option>
+          <option value="nickName">닉네임</option>
+        </select>
+        <input id="searchValue" name="searchValue" placeholder="검색어...">
+        <button type="button" onclick="javascript:searchUserInfo()">검색</button>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="userinfo-summary">
+    TOTAL :&nbsp;<span>1279</span>명
+  </div>
+
+  <table class="userinfo-table">
+    <tr>
+      <td>No.</td>
+      <td>아이디</td>
+      <td>이메일</td>
+      <td>닉네임</td>
+      <td>회원가입 일자</td>
+      <td>이메일 인증</td>
+      <td>마지막 로그인 일자</td>
+      <td>로그인</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>djdj9876</td>
+      <td>djdj9876@naver.com</td>
+      <td>sayya</td>
+      <td>2024.04.30</td>
+      <td>Y</td>
+      <td>2024.05.01</td>
+      <td>로그인</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>djfj9876</td>
+      <td>djfj9876@naver.com</td>
+      <td>afjvev</td>
+      <td>2024.04.30</td>
+      <td>Y</td>
+      <td>2024.05.01</td>
+      <td>로그인</td>
+    </tr>
+  </table>
+</body>
+<script>
+  function searchUserInfo() {
+      const url = 'http://localhost:8080';
+      fetch(url, {
+          method: 'POST',
+          headers: {'Content-Type' : 'application/json'},
+          body : JSON.stringify({
+              currentPage : '1',
+              pageSize : '20',
+              userType : document.getElementById('userType').selectedValue,
+              searchKeyword : document.getElementById('searchKeyword').selectedValue,
+              searchValue : document.getElementById('searchValue').value
+          })
+      })
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+          console.log(data);
+      })
+      .catch(error => {
+          console.error('오류 발생:', error);
+      });
+  }
+</script>
+</html>

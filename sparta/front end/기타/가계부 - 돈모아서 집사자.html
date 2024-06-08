@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&display=swap" rel="stylesheet">
+    <link type="text/css" href="themes/base/ui.all.css" rel="stylesheet" />
+	<script type="text/javascript" src="jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="ui/ui.core.js"></script>
+	<script type="text/javascript" src="ui/ui.datepicker.js"></script>
+	<script type="text/javascript" src="ui/ui.datepicker-ko.js"></script>
+	<link type="text/css" href="ui/demos.css" rel="stylesheet" />
+
+    <title> Home sweet home </title>
+</head>
+
+
+<script type="text/javascript">
+    var today = null;
+    var year = null;
+    var month = null;
+    var firstDay = null;
+    var lastDay = null;
+    var $tdDay = null;
+    var $tdSche = null;
+
+    $(document).ready(function() {
+        drawCalendar();
+        initDate();
+        drawDays();
+        $("#movePrevMonth").on("click", function(){movePrevMonth();});
+        $("#moveNextMonth").on("click", function(){moveNextMonth();});
+    });
+
+    
+    //calendar 그리기
+    function drawCalendar(){
+        var setTableHTML = "";
+        setTableHTML+='<table class="calendar">';
+        setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+        for(var i=0;i<6;i++){
+            setTableHTML+='<tr height="100">';
+            for(var j=0;j<7;j++){
+                setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                setTableHTML+='    <div class="cal-day"></div>';
+                setTableHTML+='    <div class="cal-schedule"></div>';
+                setTableHTML+='</td>';
+            }
+            setTableHTML+='</tr>';
+        }
+        setTableHTML+='</table>';
+        $("#cal_tab").html(setTableHTML);
+    }
+    //날짜 초기화
+    function initDate(){
+        $tdDay = $("td div.cal-day")
+        $tdSche = $("td div.cal-schedule")
+        dayCount = 0;
+        today = new Date();
+        year = today.getFullYear();
+        month = today.getMonth()+1;
+        firstDay = new Date(year,month-1,1);
+        lastDay = new Date(year,month,0);
+    }
+    //calendar 날짜표시
+    function drawDays(){
+        $("#cal_top_year").text(year);
+        $("#cal_top_month").text(month);
+        for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
+            $tdDay.eq(i).text(++dayCount);
+        }
+        for(var i=0;i<42;i+=7){
+            $tdDay.eq(i).css("color","red");
+        }
+        for(var i=6;i<42;i+=7){
+            $tdDay.eq(i).css("color","blue");
+        }
+    }
+    //calendar 월 이동
+    function movePrevMonth(){
+        month--;
+        if(month<=0){
+            month=12;
+            year--;
+        }
+        if(month<10){
+            month=String("0"+month);
+        }
+        getNewInfo();
+        }
+    function moveNextMonth(){
+        month++;
+        if(month>12){
+            month=1;
+            year++;
+        }
+        if(month<10){
+            month=String("0"+month);
+        }
+        getNewInfo();
+    }
+    function getNewInfo(){
+        for(var i=0;i<42;i++){
+            $tdDay.eq(i).text("");
+        }
+        dayCount=0;
+        firstDay = new Date(year,month-1,1);
+        lastDay = new Date(year,month,0);
+        drawDays();
+    }
+
+    function simple1() {
+        let temp_html1 = `<li> <input type="text" size="10"/> : <input type="text" /> </li>`
+        $("#btn_plus1").append(temp_html1)
+    }
+
+    function simple2() {
+        let temp_html2 = `<li> <input type="text" size="10"/> : <input type="text" /> </li>`
+        $("#btn_plus2").append(temp_html2)
+    }
+</script>
+
+
+<style>
+    * {font-family: 'Dongle', sans-serif;}
+
+    .wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .box1 {
+        background-color: #3387c9;
+        width: 1300px;
+        height: 120px;
+        margin: 20px auto 0px auto;
+        border: 1px solid black;
+
+        padding-left: 10px;
+    }
+
+    .box2 {
+        /*background-color: blue;*/
+        width: 600px;
+        height: 700px;
+        border: 1px solid black;
+        float: Left;
+
+        padding: 0px 15px 0px 15px;
+    }
+    .box_income {
+        /*background-color: red;*/
+        width: 350px;
+        height: 350px;
+        border: 1px solid black;
+        float: left;
+    }
+    .box_expense {
+        /*background-color: red;*/
+        width: 350px;
+        height: 350px;
+        border: 1px solid black;
+        float: left;
+    }
+
+    .box5 {
+        /*background-color: orange;*/
+        width: 1300px;
+        height: 1000px;
+        margin: auto;
+        border: 1px solid black;
+    }
+
+    .cal_top {
+        text-align: center;
+        font-size: 30px;
+    }
+    .cal {
+        text-align: center;
+        width: 570px;
+        height: 500px;
+    }
+    table.calendar {
+        border: 1px solid black;
+        display: inline-table;
+        text-align: left;
+    }
+    table.calendar td {
+        vertical-align: top;
+        border: 1px solid skyblue;
+        width: 100px;
+    }
+
+    .btn_plus1 {
+        width: 55px;
+        height: 25px;
+
+        border: 1px solid black;
+        border-radius: 5px;
+
+        margin: 0px 0px 10px 30px;
+    }
+
+    .btn_plus2 {
+        width: 55px;
+        height: 25px;
+
+        border: 1px solid black;
+        border-radius: 5px;
+
+        margin: 0px 0px 10px 30px;
+    }
+</style>
+
+
+
+
+
+<body>
+    <div class="box1"> <span style="font-size: xxx-large; color: white"; 30px;> Home Sweet Home </span> </div>
+
+    <div class="wrap">
+        <div class="box2">
+            <div class="cal_top">
+                <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
+                <span id="cal_top_year"></span>
+                <span id="cal_top_month"></span>
+                <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
+            </div>
+            <div id="cal_tab" class="cal"> </div>
+        </div>
+
+        <div class="box_income">
+            <h1 style="text-align: center;"> [수입] </h1>
+
+            <button class="btn_plus1" onclick="simple1()"> 항목 추가 </button>
+            <ol id="btn_plus1">
+                <li> <input type="text" size="10"/> : <input type="text" /> </li>
+                <li> <input type="text" size="10"/> : <input type="text" /> </li>
+                <li> <input type="text" size="10"/> : <input type="text" /> </li>
+                <li> <input type="text" size="10"/> : <input type="text" /> </li>
+            </ol>
+
+            <br> 의 - 꾸밈비(옷, 화장품, 미용)
+            <br> 식 - 음식 + 술
+            <br> 주 -
+            <br> OTT 및 구독서비스
+            <br> - 문화생활(취미)
+            <br> - 교통비
+            <hr>
+
+        </div>
+
+        <div class="box_expense">
+            <h1 style="text-align: center;"> [지출] </h1>
+            <button class="btn_plus2" onclick="simple2()"> 항목 추가</button>
+            <ol id="btn_plus2">
+                <li><input type="text" size="10" list="lectures"/> : <input type="number"/></li>
+                        <datalist id="lectures">
+                            <option value="식비">
+                            <option value="의류">
+                            <option value="월세">
+                            <option value="기타">
+                        </datalist>
+                <li><input type="text" size="10"/> : <input type="text"/></li>
+                <li><input type="text" size="10"/> : <input type="text"/></li>
+                <li><input type="text" size="10"/> : <input type="text"/></li>
+            </ol>
+
+            <hr>
+        </div>
+
+        <div class="box_result"> </div>
+    </div>
+
+    <div class="box5">
+        1st - 월별로 정리가 되어야함.
+        <br> 2nd - 누적된 정리
+        <br> 3rd - 목표 금액 표시까지도 가능 ** 사실상 이게 핵심
+
+        <br> 마케팅도 있음 - MBTI 'J'들을 위한 가계부 웹페이지
+        <br> 앱도 같이 만들면 좋지 않을까 싶긴 함 ㅋㅋ
+
+        <br> 서버관리 데이터베이스 관리 둘다 가능해야할텐데
+        <br> 만드는게 아주 어렵지 않을 것 같긴 함
+
+        <br> 캘린더에도 약간 월욜부터 시작과 일욜부터 시작 두 가지 버전을 만들 수 있어야하지 않을까 싶다
+
+    </div>
+</body>
+
+</html>

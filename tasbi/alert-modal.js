@@ -1,4 +1,0 @@
-
-class alertModal extends HTMLElement {
-  
-}

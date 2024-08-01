@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>loading</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div id="imgSection">
+    </div>
+    <button id="btn">확인</button>
+  </div>
+</body>
+<script>
+  const loading = {
+    init: function() {
+      document.getElementById('btn')
+        .addEventListener('click', () => {
+          loading.doJob();
+        }
+      );
+    },
+    doJob() {
+      let imgSection = document.getElementById('imgSection');
+      imgSection.innerHTML += '<img src="./loading.gif" height="50px" alt="진행중">';
+      setTimeout(() => {
+        loading.endJob();
+      }, 3000);
+    },
+    endJob() {
+      imgSection.innerHTML = '';
+    }
+  }
+  loading.init();
+</script>
+</html>

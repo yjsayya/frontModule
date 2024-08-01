@@ -1,27 +1,30 @@
-let scripts = document.getElementsByTagName('script');
-let myScript = scripts[ scripts.length - 1 ];
 
-let queryString = myScript.src.replace(/^[^\?]+\??/,'');
-
-let params = parseQuery(queryString);
-
-function parseQuery ( query ) {
-   let Params = new Object ();
-   if (!query) 
-    return Params; // return empty object
-   let Pairs = query.split(/[;&]/);
-   for (let i = 0; i < Pairs.length; i++ ) {
-      let KeyVal = Pairs[i].split('=');
-      if ( ! KeyVal || KeyVal.length != 2 ) {
-        continue;
+// Promise 객체 사용방법 
+function doPromise(arr) {
+   return new Promise((resolve, reject) => {
+      let sum = 0;
+      for (ele of arr) {
+         sum += ele;
       }
-      let key = unescape(KeyVal[0]);
-      let val = unescape(KeyVal[1]);
-      val = val.replace(/\+/g, ' ');
-      Params[key] = val;
-   }
-   return Params;
+      console.log("sum : " + sum);
+      if (sum > 15)
+         return resolve("success");
+      else
+         return reject("error");
+   });
 }
 
+let arr = [1,2,3,4,5,6,7];
+doPromise(arr)
+   .then((success) => {
+      console.log(success);
+   })
+   .catch((fail) => {
+      console.log(fail);
+   })
+   .finally(() => {
+      console.log("finish");
+   });
 
-// 출처: https://iamnotokay.tistory.com/241 [I am not Okay:티스토리]
+
+// 출처: https://iamnotokay.tistory.com/241

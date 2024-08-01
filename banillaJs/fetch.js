@@ -16,3 +16,34 @@ function getPostLists(currentPage,pageSize) {
           console.error('오류 발생:', error);
       });
 }
+
+
+function fetchPost() {
+    let requestData = {
+
+    };
+
+    const url = 'http://localhost:8080';
+    fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+            cache: 'no-cache',
+            timeout: 100000
+        }
+    )
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        if (data.responseCode === 200) {
+            // 동작
+            return "성공"
+        }
+    })
+    .catch(error => { // 500에러
+        alert(error);
+    })
+}

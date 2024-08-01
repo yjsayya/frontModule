@@ -12,7 +12,7 @@
   </div>
 </body>
 <script>
-  document.getElementById('fileInput').addEventListener('change', function () {
+  document.getElementById('fileInput').addEventListener('change', () => {
     let file = this.files[0];
     let reader = new FileReader();
     reader.onload = function (event) {
